@@ -5,6 +5,7 @@ const http = require('http');
 const hostname = '127.0.0.1',
     port = 3001,
     express = require('express'),
+    session = require('express-session'),
     app = express();
 
 const cors = require('cors');
@@ -17,6 +18,13 @@ const corsOptions = {
     "Access-Control-Allow-headers":
         "Origin, X-Requested-With, Content-Type, Accept",
 }
+
+app.use(session({
+    secret: 'power',
+    resave: false,
+    saveUnilitialized: false,
+    is_logged_in: false,
+}));
 
 app.use(cors(corsOptions));
 app.use(express.json());
